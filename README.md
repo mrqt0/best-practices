@@ -36,4 +36,5 @@ Comes with Cmder. Basic setup:
 git config --global user.name "Marco Weber"
 git config --global user.email marco.weber@hotmail.de
 git config --global core.editor subl
+git config --global credential.helper wincred
 ```
