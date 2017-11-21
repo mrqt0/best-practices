@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-print_help():
-- usage
+parser.print_help():
+- usage # 
 - description
 - argument groups
 - epilog
@@ -22,36 +22,34 @@ import sys
 class Build():
 	def __init__(self):
 		print("Build")
+		self.parser = get_parser()
+		self.parser.print_help()
+		self.parser.print_usage()
+		pass
+
+	def run(self):
 		pass
 
 class Test():
-	def __init__(self, argv, parser):
+	def __init__(self):
 		print("Test")
-		self.parser = parser
-		self.parse_args(argv)
+		self.parser = get_parser()
+		self.parse_args()
 
-	def parse_args(self, argv):
+	def parse_args(self):
 		self.parser.add_argument("--campaign")
-		self.args = self.parser.parse_args(argv)
-		print(self.args)
+		self.args = self.parser.parse_args(sys.argv)
+		print(sys.argv)
 
 	def check_args(self):
+		pass
+
+	def run():
 		pass
 
 modules = collections.OrderedDict()
 modules["build"] = "Build"
 modules["test"] = "Test"
-
-def main():
-	parser = argparse.ArgumentParser()
-	parser.add_argument("module", type=type_module)
-	args = parser.parse_args(sys.argv[1:2])
-
-	module_parser = argparse.ArgumentParser(prog="{} {}".format(sys.argv[0], sys.argv[1]))
-	module_parser.add_argument("--loglevel")
-
-	class_instance = args.module(sys.argv[2:], module_parser)
-	class_instance.run()
 
 def type_module(string):
 	if string not in modules.keys():
@@ -60,10 +58,20 @@ def type_module(string):
 	module = globals()[classname]
 	return module
 
-#def type_campaign(string):
-#	pass
+def get_parser():
+	module_parser = argparse.ArgumentParser(prog="{} {}".format(sys.argv[0], sys.argv[1]))
+	module_parser.add_argument("module", help=argparse.SUPPRESS)
+	module_parser.add_argument("--loglevel")
+	return module_parser
 
+def main():
+	print(sys.version)
+	parser = argparse.ArgumentParser()
+	parser.add_argument("module", type=type_module)
+	args = parser.parse_args(sys.argv[1:2])
 
+	class_instance = args.module()
+	class_instance.run()
 
 if __name__ == "__main__":
 	main()
