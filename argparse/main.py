@@ -39,7 +39,6 @@ class Test():
 	def parse_args(self):
 		self.parser.add_argument("--campaign")
 		self.args = self.parser.parse_args(sys.argv)
-		print(sys.argv)
 
 	def check_args(self):
 		pass

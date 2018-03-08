@@ -50,6 +50,6 @@ Distiguish the following groups:
 - Reference documentation
   - processes and policies
 - End user
-  - installation, admin, product konwledge, tutorials
+  - installation, admin, product knowledge, tutorials
 - System
   - API etc.
