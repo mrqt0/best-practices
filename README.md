@@ -25,6 +25,10 @@ Where there is no such thing as "best", we will decide on one option.
 
 Nice way to get UNIX shell and git for windows: http://cmder.net
 
+### Alias
+
+- Define alias and pass all command line arguments: `alias p3=<path/to/python3> $*`
+
 ## Sublime Text
 
 Preferred editor: http://www.sublimetext.com/3
@@ -65,8 +69,19 @@ Search:
 
 Command palette:
 - Open command palette `Ctrl + Shift + P`
+
 Run build:
 - Run build `Ctrl + B`
+- Run specific build system `Ctrl + Shift + B`
+
+Create own build system: 
+- Tools -> Build System -> New Build System...
+- e.g. `Cmder.sublime-build` to open Cmder for file directory:
+```
+{
+	"cmd": ["C:\\Program Files\\Cmder\\Cmder.exe"],
+}
+```
 
 ### Projects and Files
 
