@@ -25,9 +25,18 @@ Where there is no such thing as "best", we will decide on one option.
 
 Nice way to get UNIX shell and git for windows: http://cmder.net
 
+### Shortcuts
+
+- Close tab: `Ctrl + W`
+- Go up one directory level: `Ctrl + Alt + U` 
+
 ### Alias
 
 - Define alias and pass all command line arguments: `alias p3=<path/to/python3> $*`
+
+### Scripts
+
+- Deploy scripts that can be run from anywhere here: `<CMDER_ROOT>\vendor\conemu-maximus5\ConEmu\Scripts`
 
 ## Sublime Text
 
@@ -79,7 +88,7 @@ Create own build system:
 - e.g. `Cmder.sublime-build` to open Cmder for file directory:
 ```
 {
-	"cmd": ["C:\\Program Files\\Cmder\\Cmder.exe"],
+	"cmd": ["C:\\Program Files\\Cmder\\Cmder.exe", "/SINGLE", "$file_path"],
 }
 ```
 
