@@ -29,6 +29,7 @@ Nice way to get UNIX shell and git for windows: http://cmder.net
 
 - Close tab: `Ctrl + W`
 - Go up one directory level: `Ctrl + Alt + U`
+- Entter fullscreen mode: `Alt + Enter` 
 - Open path: `Ctrl + Left Click`, customize via "Settings..." -> "Keys & Macro" -> "Highlight" -> `#"C:\Program Files\Sublime Text 3\subl.exe" -n%1 "%3"`
 
 ### Alias
