@@ -27,9 +27,12 @@ Nice way to get UNIX shell and git for windows: http://cmder.net
 
 ### Shortcuts
 
+- Summon from taskbar (anywhere): `` Ctrl + ` (Strg + Ö)``
+- New tab with options: `Ctrl + T`
+- New CMD tab: `Shift + Alt + 1`
 - Close tab: `Ctrl + W`
 - Go up one directory level: `Ctrl + Alt + U`
-- Entter fullscreen mode: `Alt + Enter` 
+- Enter fullscreen mode: `Alt + Enter` 
 - Open path: `Ctrl + Left Click`, customize via "Settings..." -> "Keys & Macro" -> "Highlight" -> `#"C:\Program Files\Sublime Text 3\subl.exe" -n%1 "%3"`
 
 ### Alias
@@ -39,6 +42,10 @@ Nice way to get UNIX shell and git for windows: http://cmder.net
 ### Scripts
 
 - Deploy scripts that can be run from anywhere here: `<CMDER_ROOT>\vendor\conemu-maximus5\ConEmu\Scripts`
+
+### Splitscreen
+
+- Open tab in splitscreen mode, 50 percent to the bottom: `-new_console:s50h`
 
 ## Sublime Text
 
