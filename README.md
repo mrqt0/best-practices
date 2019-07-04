@@ -136,4 +136,7 @@ git config --global core.excludesfile %USERPROFILE%\.gitignore
 
 ## Python
 
-
+Integrate MiniConda in Cmder:
+- Under `Settings -> Startup -> Tasks` clone existing `cmd::Cmder` task
+- Specify some name, e.g. `Conda`
+- Copy into textbox: `cmd /k "%ConEmuDir%\..\init.bat"  " & "%Home%\AppData\Local\Continuum\Miniconda3\Scripts\activate.bat" "%Home%\AppData\Local\Continuum\Miniconda3\"`
