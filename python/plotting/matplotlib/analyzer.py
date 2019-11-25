@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def generate_logs():
-    pass
     # sinusoidal delay?
     # random init?
 

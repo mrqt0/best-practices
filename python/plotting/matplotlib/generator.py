@@ -10,8 +10,9 @@ def generate_logs():
     for tx in nodes:
         for seq_no in range(140):
             tx_time = seq_no * 30
+            # TODO: make better model based on distance (from neighborhood graph?)
+            # TODO: make iso timestamps?
             delay = 200*(1 + np.sin(2*np.pi*seq_no/10))
-            data 
             for node in nodes:
                 if node == tx:
                     entry = {

@@ -39,3 +39,8 @@ class Foo:
             raise ValueError("name must be string")
 
         return self.__class__ + name
+
+
+if __name__ == "__main__":
+    foo = Foo()
+    foo.name()
