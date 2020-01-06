@@ -5,6 +5,9 @@ It explains what the module does.
 """
 
 
+__all__ = ["Foo"]
+
+
 class Foo:
     """This is my class dosctring.
 

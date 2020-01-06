@@ -2,13 +2,26 @@
 
 ## To Do
 
+- relpython timer: checkout contextlib.ContextDecorator
+  or different ways of tic/toc + contextmanager + decorator
+
+
+- [ ] Set up linting, autocompletion in sublime text
+
 - [ ] pathtools
 - [ ] cli
-- [ ] 
+- [ ] Check out article on async init patterns: http://as.ynchrono.us/2014/12/asynchronous-object-initialization.html
+  - dependency injection: `__init__` consumes objects; there is additional async
+    factory class method
+  - classmethod for creation
+  - separate module-level method for creation
+  - context manager
+  - check out async-dgram: https://pypi.org/project/asyncio-dgram/
+- [ ] Check out functools dispatch pattern
 
 ## Table of Contents
 
-- [Guidlines](guidelines.md)
+- [Guidelines](guidelines.md)
 - Topics
   - packaging: setuptools, flit, poetry, python import system, ...
   - testing: unittest, pytest, tox
@@ -17,8 +30,8 @@
   - automation: tox
   - command-line: argparse
   - concurrency: asyncio
-  - web: 
-- [Snippets](snippets.md) 
+  - web:
+- [Snippets](snippets.md)
   - logging
   - bytes/int/string/hex conversions
   - regex
@@ -36,18 +49,96 @@ The snippets are for quick look-up. They be me moved to a topic-based folder
 later.
 
 
-## Setting up Sublime Text 3 for Python development
+## Setting up Sublime Text 3
 
 Useful syntax-specific settings:
-```
-"tab_size": 4,
-"translate_tabs_to_spaces": true,
-"trim_trailing_white_space_on_save": true,
-"ensure_newline_at_eof_on_save": true,
+```json
+    // maximum line length for dosctrings and code
+    "rulers": [72, 79]
 ```
 
-Install package control:
+## IDE features with Anaconda
+
+Install via package control:
 - Press `Ctrl + Shift + P`
-- Type `Install Package Control` and 
-- Type `Package Control: Instal Package`
-- Search for `Anaconda`. Works out of the box.  
+- Type `Install Package Control` and
+- Type `Package Control: Install Package`
+- Search for `Anaconda`. Works out of the box.
+
+Features:
+- Autocompletion
+- Go to definition: `Ctrl+Alt+G`
+- Find usages. `Ctrl+Alt+F`
+- Show documentation: `Ctrl+Alt+D`
+
+Fine tune settings:
+- Go to `Preferences` -> `Package Settings` -> `Anaconda` (default or user)
+- Disable linting:
+```json
+    "anaconda_linting": false,
+    "pep8": false,
+```
+- Set the python interpreter (can point to venv):
+```json
+    "python_interpreter": "path/to/python",
+```
+
+
+## Linting with SublimeLinter-flake8
+
+- Precondition: install flake8
+- Either make sure flake8 is available on the path, or specify the `python`
+  or `executable` SublimeLinter settings
+- Install SublimeLinter via package control
+- Optional settings:
+```json
+{
+    "styles": [
+        {
+            "mark_style": "squiggly_underline"
+        }
+    ],
+    "lint_mode": "load_save"
+}
+```
+
+
+## General Python Programming
+
+With `__all__`, you can limit what is importable with `from module import *`.
+It also influences IDEs and documentation tools like sphinx.
+
+
+### Tricks and Patterns
+
+- Use context managers for setup and teardown, either class-based or
+  function-based.
+  Also works for asynchronous enter and exit functions.
+  Inherit from `contextlib.ContextDecorator` so the class can also be used as
+  a decorator.
+- Use `itertools`:
+  - `islice` to take only part of iterator
+  - `dropwhile` to skip first elements based on condition
+- Use `str.translate(mapping)` to translate multiple characters
+
+
+### Libraries and Applications
+
+- [PyOxidizer](https://pyoxidizer.readthedocs.io/en/latest/index.html):
+  Create stand-alone applications
+- [pipx]() Install python packages into isolated and globally accessible
+  environment
+
+
+### Further Reading
+
+- [Code Style](https://docs.python-guide.org/writing/style/)
+- [Tricks](https://martinheinz.dev/blog/1)
+- [Design Patterns](https://stackabuse.com/design-patterns-in-python/)
+
+
+## Resources
+
+- [Moshe Zadka](https://opensource.com/article/19/11/document-python-sphinx)
+- [Al Sweigart]()
+- [Steve Dower]: Works at Microsoft, brought Python to the Windows Store

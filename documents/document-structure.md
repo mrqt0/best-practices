@@ -53,3 +53,51 @@ Distiguish the following groups:
   - installation, admin, product knowledge, tutorials
 - System
   - API etc.
+
+## Personal
+
+src # backed up in github
+tools
+  setup
+media
+  music
+  images
+    drawings
+    avatars
+    wallpapers
+    processing
+    misc
+    photos # backed up in google photos
+      2011
+      ...
+      2017
+        wedding
+      vacation
+        ..
+  movies
+  texts
+docs
+  notes # backed up in evernote
+  official
+    passports
+    applications
+    certificates
+    memberships
+  archive
+    misc
+    school
+    university
+  household
+    rent
+    financial
+    insurance
+  leisure
+    guitar
+  job
+    applications
+    salary
+
+contacts
+settings
+bookmarks
+mails

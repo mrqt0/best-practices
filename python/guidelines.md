@@ -1,25 +1,42 @@
 # Python Guidelines
 
->
->
->
+> R&S Guidelines for writing Python Packages
 
-Let's face it, python packaging is a mess. Share and reuse software across the
-company. Aid for anyone. If we use similar practives, we can benefit from each
-other. Not everyone should have to figure out.
-Libraries for build, test and process automation inside Rohde & Schwarz. 
-Mission statement in inneRSource.
+Imagine you have written some Python code you consider useful for other people
+within the company. You would like to share it as a pip-installable library,
+but you don't know where to start. Writing Python code is easy, but the
+ecosystem can be a bit overwhelming: Information is scattered, outdated,
+too general to be really helpful and sometimes even contradictory.
 
-Purpose: how do you write quality library and bring it to pypi.rsint.net.
-How to use this code, dependency managent etc. is a different topic.
+This guide wants to bring you from python scripts on your local drive to
+high-quality packages on pypi.rsint.net.
+It is targeted at libraries for build, test and process automation inside
+Rohde & Schwarz. However, some parts may be applicable to applications and
+productive code as well.
 
-Anyone who wants to write a package may use this docuement as a reference.
-Anyone who decides to follow the rules has a chance to be 
+TODO: link to inneRSource
+
+Following these guidelines has several benefits:
+- You do not have to figure out everything yourself.
+- You can use predefined templates, project files and CI pipelines.
+- In case of problems, you can benefit from the experience of others.
+- Users will quickly be familiar with your package.
+- Users know which quality standards you adhere to.
+- TODO: You might have the chance of centralized funding
+
+TODO: Links to other projects
 
 
 ## About this document
 
-RFC 2119
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+- MUST, SHALL, REQUIRED: absolute requirement
+- MUST NOT, SHALL NOT: absolute prohibition
+- SHOULD, RECOMMENDED: there may be reasons to ignore item
+- SHOULD NOT, NOT RECOMMENDED: there may be reasons when item is acceptable
+- MAY, OPTIONAL: truly optional
 
 SHOULD not only explain the what and how, but also the why.
 
@@ -29,89 +46,80 @@ explanations.
 
 ## Table of contents
 
-Project
-- Scope
-- Name
-- Version
-- Structure
-
-Code
-- Code style
-- Core
-  - f-strings
-  - type hints
-- Standard library
-  - logging
-  - enum
-  - 
-- External modules
-
-Documentation
-- Docstrings
-- Type Hints
-- README
-- API Doc
-- Changelog
-
-Tests
-- linting
-- type checking
-- coverage
-- unittests
-- automation
-
-Packaging
+- [Project](#project)
+  - [Scope](#scope)
+  - [Name](#name)
+  - [Version](#version)
+  - [Structure](#structure)
+- [Code](#code)
+  - Code style
+  - Built-ins and standard library
+  - External modules
+- [Documentation](#documentation)
+  - [Docstrings](#docstrings)
+  - [Type Hints](#type-hints)
+  - [Read Me](#readme)
+  - [API Doc](#api-doc)
+  - [Changelog](#changelog)
+- [Tests](#tests)
+  - [Linting](#linting)
+  - [Type checking](#type-checking)
+  - [Unit tests](#unittests)
+  - [Coverage](#coverage)
+  - [Automation](#automation)
+- [Distribution](#distribution)
 
 
+Responsibility
+Version control
 
 ## Project
 
 ### Scope
 
-Consider the UNIX philosophy. Do one thing and do it well.
+Consider the UNIX philosophy. Do one thing and do it well. Work together.
 Do:
 - instrument controller
 Don#t. things that already exists, too large or to specific
 - test framework
-- 
+-
 
 
-## Name
+### Name
 
-You SHOULD choose a short, unique and meaningful name for your project. 
-Have a look at the [Python Package Index](PyPI.org) and 
-[pypi.rsint.net](pypi.rsint.net) if the name is already taken. 
+You SHOULD choose a short, unique and meaningful name for your project.
+Have a look at the [Python Package Index](PyPI.org) and
+[pypi.rsint.net](pypi.rsint.net) if the name is already taken.
 
-Your package name (the import name) MUST be lowercase with optional underscores:
+The project name (repository name, project name in setup.py, project name used
+in documentation, etc.) MUST be lowercase with optional dashes:
+```
+rsb-helloworld
+```
+Dashes are common for git repositories. Pip also implicitly converts any
+separator to a dash. However, a dash cannot be part of a valid import name in
+python, because it would be interpreted as a minus. Your package name (name of
+the directory where the source code lives) MUST therefore use an underscore
+instead of a dash:
 ```
 rsb_helloworld
 ```
 
-The project name used everywhere else (repository name, project name in setup.py, 
-project name used in documentation) MUST be the same, with underscores replaced
-by dashes:
-```
-rsb-helloworld
-```
-
-Pip implicitly converts any separator to a dash. For git repositories, it is
-common to use dashes as well. However, a dash cannot be part of a valid import
-name in python, because it would be interpreted as a minus.
-
 Discussion:
 
-- Should all names use a common prefix like `rsb_` or `rs`? 
-  Pros: 
-  - A unique namespace avoids clashes with other projects. 
-  - The user can already see when importing where the package comes from.
-  Cons:
-  - The name looks a bit bulky 
-    (but you can still `import rsb_helloworld as helloworld`)
+- Should all names use a common prefix like `rsb_` or `rs`?
+  - Pros:
+    - A unique namespace avoids clashes with other projects.
+    - The user can already see when importing where the package comes from.
+  - Cons:
+    - The name looks a bit bulky
+      (but you can still `import rsb_helloworld as helloworld`)
 - If there is a prefix, what should it be? Prefixes that terminate in vowels
-  are easier to pronounce and merge into a single word, like `aiohttp` 
+  are easier to pronounce and merge into a single word, like `aiohttp`
   or `pytest`.
   But with our company name, it is difficult to come up with something similar,
   so we should use a separator?
+
 
 ### Version
 
@@ -120,10 +128,10 @@ You MUST identify each release with a version number following the
 ```
 Major.Minor[.Patch]
 ```
-where Major, Minor and Patch are non-negative integers without leading zeroes.
+where Major, Minor and Patch are non-negative integers without leading zeros.
 You increment:
  - Major when you introduce backwards-incompatible API changes.
- - Minor when you add new public features without breakig the API.
+ - Minor when you add new public features without breaking the API.
  - Patch when you added bugfixes in a backwards-compatible manner.
 
 This is compatible with [PEP440 - Version Numbering](https://www.python.org/dev/peps/pep-0440/).
@@ -139,18 +147,18 @@ git tag -a v1.2.3 -m "Release version 1.2.3"
 ```
 The version tag is usually prefixed with a `v`.
 
-You MUST specifiy the package version in your project file, e.g. setup.py.
+You MUST specify the package version in your project file, e.g. `setup.py`.
 
 Discussion:
 
 - What exactly is the public API of a python package?
-  - Is it defined by the dosctrings in the `__init__.py`, each module and class?
+  - Is it defined by the docstrings in the `__init__.py`, each module and class?
   - Is it defined by the import hierarchy?
   - Is it defined by all names in the `__all__` list?
   - Is it defined by all packages, modules, functions, classes, methods and
     attributes without leading underscores?
-- What if the package has one or several command-line interfaces? 
-  Do they need separate versioning? 
+- What if the package has one or several command-line interfaces?
+  Do they need separate versioning?
 - Where should the version number be defined? Should it also be part of the
   source code, and if so, how to single-source it?
   - The [Python Packaging Authority](https://packaging.python.org/guides/single-sourcing-package-version/)
@@ -158,9 +166,9 @@ Discussion:
   - Flit uses `__version__` inside `__init__.py` as the single source.
   - In Python 3.8, there is `importlib.metadata.version()`, so no need to put
     the version number in the source code?
-   - 
+   -
 
-  From vcs? necessary to add to code base, now that we have 
+  From vcs? necessary to add to code base, now that we have
 - Which extension to basic scheme allowed? (E.g. alpha and beta, release candidates, ...)
 
 
@@ -168,72 +176,181 @@ Discussion:
 
 ### Code style
 
-Your code MUST comply with (PEP8)[https://www.python.org/dev/peps/pep-0008/], the
-official python styleguide. Whereas PEP8 leaves room for interpretation, you SHOULD
-use a checker like `pycodestyle` (which is part of `flake8`). You MAY use the 
-autoformatter `black` to avoid any discussion about code style.
+Your code MUST comply with [PEP8](https://www.python.org/dev/peps/pep-0008/),
+the official python style guide. Whereas PEP8 leaves room for interpretation,
+you SHOULD use a checker like `pycodestyle` (which is part of `flake8`). You
+MAY use the autoformatter `black` to avoid any discussion about code style.
 
 Discussion:
 - The maximum line length is configurable even in black, which has a default of
   88 characters. Pycodestyle follows PEP8 and has a default of 79 characters.
-  What should be choose?
+  What should we choose?
+- pylint is also quite popular,
+
+### Built-ins and Standard library
+
+- Core
+  - f-strings
+  - type hints
+  - exceptions
+- Standard library
+  - logging
+  - enum
+  - dataclasses
+
+### Third-party libraries
 
 
 
 ## Documentation
 
+### Docstrings
 
-## Docstrings
+Docstrings as described in [PEP 257](https://www.python.org/dev/peps/pep-0257/)
+are the standard for documenting Python code.
+The built-in `help()` function, IDEs and API documentation generators all make
+use of docstrings. You can even access them during runtime via the `__doc__`
+attribute.
 
-You should at least single-line for each public module and class.
-google docstring convention. Noo need for Type hints (see next item).
-can autogenerate APi documentation with sphinx, sphinx-apidoc and
-sphinx-napoleon.
-Choose between imperative or descriptive, but stick to it.
-"Calculate" versus "Calculates.."
+You MUST write at least a one-line docstring for each public package, module,
+class, exception, method and function. You SHOULD follow these conventions:
+- Surround the docstring by triple double quotes on the same line as the text.
+- Limit the docstrings to 72 characters.
+- Write a single English phrase, starting in a capital letter and ending in a
+  period.
+- Choose either imperative ("Calculate...", preferred) or descriptive
+  ("Calculates...") style and be consistent throughout the project.
 
-Single english phrase ending in a period. For all modules and public
-classes, exceptions and functions.
+Example:
+```py
+def add(a, b):
+    """Calculate the sum of two values."""
+    return a + b
+```
 
-Module dosctrings SHOULD contain a list of classes, exceptions and functions
-Class docstring SHOULD include publich methods and attributes
+For non-trivial cases, you SHOULD write multi-line docstrings. You SHOULD use
+the [Google style](http://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings),
+which is more human-friendly than reStructuredText (RST) and less verbose than
+the Numpy style.
+Most tools can handle Google docstrings, for example the
+[PyCharm IDE](https://www.jetbrains.com/help/pycharm/settings-tools-python-integrated-tools.html)
+and the Sphinx documentation generator with help of the
+[Napoleon extension](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/index.html).
+Check out the [Napoleon examples](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
+for reference. You SHOULD follow these conventions:
+- Start with summary line, separated by a blank line from the rest.
+- Put more detailed description of purpose and behavior into the following
+  paragraphs, each separated by a blank line.
+- Add the relevant [sections](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/index.html#docstring-sections), each separated by a blank line. They
+  consist of a section heading and an indented list of values.
+- Finish with triple double quotes on a separate line, followed by a blank line
+  before the code starts.
 
-Cl
+#### Package
 
+- The **package** docstring inside the `__init__.py` SHOULD contain a list of
+modules and subpackages the package exports.
+
+Starting point of documentation: purpose, what it does, how it works.
+Modules and subpackages, how they relate to each other.
+
+https://stackoverflow.com/questions/1944569/how-do-i-write-good-correct-package-init-py-files
+
+
+
+#### Module
+
+- The **module** docstring SHOULD contain a list of classes, exceptions,
+  functions, global variables and other
+with a brief summary (typically shorter than the docstring of the objects
+themselves):
+The
+
+
+```py
+"""
+
+Classes:
+
+Functions:
+-
+"""
+```
+
+#### Class
+
+**Class** docstring SHOULD include public methods and attributes
 Attributes
 Methods
 
+```py
+"""
 
+Classes:
+    C:
+
+Functions:
+-
+"""
+
+
+class C:
+
+    def __init__(self):
+        pass
+
+    def get_squares(self) -> int:
+        """Calculate series of squared integer.
+
+        Yields:
+        """
+        for i in range(100):
+            yield i
+
+
+```
+
+#### Function
+**Function** and **method** docstrings
 Args
 Returns
 Yields
 Raises
 
+No need for Type hints (see next item).
 
 
-
-
-## Type hints
+### Type hints
 
 You SHOULD use type hints.
-Check with MYPY. 
+Check with MYPY.
 
 
-
-## Documentation
+### README
 
 You MUST write a README explaining purpose, setup and usage of your package.
-You MAY use the (Temmplate)[].
+You MAY use the (Template)[].
 
 
-You MUST document your code inline using docstrings.
-You SHOULD use the Google style. It is more readable than the ReStructured Text 
-(RST). *Add link to Google style* 
 
-PEP257. 
+## Tests
 
-Sphinx.
+### Static Analyis
 
+Static code analysis often included with stylistic checks.
+flake8 and pylint. mypy
+
+### Type Checking
+
+
+### Tests
+
+Yout MUST write unit tests.
+
+
+### Coverage
+
+**TODO**
 
 ## Code style
 
@@ -248,12 +365,13 @@ pylint is logical and stylistic
 May use black to autoformat
 
 The flake8 configuration can be inside the setup.cfg, tox.ini or .flake8 file
-or passed as comand line arguments:
+or passed as command line arguments:
 ```ini
 ignore = E305
 exclude = .git,__pychache__
 max-line-length = 90
 ```
+
 
 ## Testing philosophy
 
@@ -264,16 +382,25 @@ https://tryexceptpass.org/article/pytest-github-integration/
 
 ## Typing
 
-pyright: Microsoft alternative to mypy
+MyPy: most used, by google
+Alternatives:
+- pyright: Microsoft
+- pyre: Facebook
+- pytype: Google
+
+Resources:
+- [Al Sweigart: Type Hints for the Busy Python Programmer](https://inventwithpython.com/blog/2019/11/24/type-hints-for-busy-python-programmers/)
+- [MyPy cheat sheet](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)
 
 ## Linting
 
 List of rules for flake8: https://lintlyci.github.io/Flake8Rules/
 
 
-## Packaging
+## Distribution
 
-- src or not? 
+- src or not?
+  - [Testing your python package as installed by Per Ganssle](https://blog.ganssle.io/articles/2019/08/test-as-installed.html)
   - See [python bytes 22](https://pythonbytes.fm/episodes/show/22/pythonpath-considered-harmful)
   - https://hynek.me/articles/testing-packaging/
   - See [python bytes 15](https://pythonbytes.fm/episodes/show/15/digging-into-python-packaging)
@@ -299,7 +426,7 @@ List of rules for flake8: https://lintlyci.github.io/Flake8Rules/
 Asyncio
 - [Yeray Diaz on Hackernoon](https://hackernoon.com/asyncio-for-the-working-python-developer-5c468e6e2e8e#.ft56qol06)
 - [Chris Medina on tryexceptpass](https://hackernoon.com/threaded-asynchronous-magic-and-how-to-wield-it-bba9ed602c32#.8qk30tq31)
-- [Chrie Medina: new asyncio features in 3.7](https://tryexceptpass.org/article/asyncio-in-37/)
+- [Chris Medina: new asyncio features in 3.7](https://tryexceptpass.org/article/asyncio-in-37/)
 
 ## Third party
 

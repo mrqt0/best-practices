@@ -55,3 +55,4 @@ start build/html/index.html
 ## Resources
 
 - [Tutorial by Giselle Zeno](https://gisellezeno.com/tutorials/sphinx-for-python-documentation.html)
+- [Tutorial with tox by Moshe Zadka](https://opensource.com/article/19/11/document-python-sphinx)

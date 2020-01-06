@@ -3,7 +3,7 @@
 ## General
 
 This project represents a central reference point for best practices in python
-(later possibly other languages as well). Such, it provides templates and 
+(later possibly other languages as well). Such, it provides templates and
 enforces a common style in other projects.
 
 This may encompass:
@@ -32,7 +32,7 @@ Nice way to get UNIX shell and git for windows: http://cmder.net
 - New CMD tab: `Shift + Alt + 1`
 - Close tab: `Ctrl + W`
 - Go up one directory level: `Ctrl + Alt + U`
-- Enter fullscreen mode: `Alt + Enter` 
+- Enter fullscreen mode: `Alt + Enter`
 - Open path: `Ctrl + Left Click`, customize via "Settings..." -> "Keys & Macro" -> "Highlight" -> `#"C:\Program Files\Sublime Text 3\subl.exe" -n%1 "%3"`
 
 ### Alias
@@ -47,6 +47,7 @@ Nice way to get UNIX shell and git for windows: http://cmder.net
 
 - Open tab in splitscreen mode, 50 percent to the bottom: `-new_console:s50h`
 
+
 ## Sublime Text
 
 Preferred editor: http://www.sublimetext.com/3
@@ -55,6 +56,7 @@ Preferred editor: http://www.sublimetext.com/3
 
 - Indent: `Ctrl + ´`
 - Unident: `Ctrl + ß`
+- Delete line: `Ctrl + Shift + K`
 
 ### Select
 
@@ -92,12 +94,12 @@ Run build:
 - Run build `Ctrl + B`
 - Run specific build system `Ctrl + Shift + B`
 
-Create own build system: 
+Create own build system:
 - Tools -> Build System -> New Build System...
 - e.g. `Cmder.sublime-build` to open Cmder for file directory:
 ```
 {
-	"cmd": ["C:\\Program Files\\Cmder\\Cmder.exe", "/SINGLE", "$file_path"],
+    "cmd": ["C:\\Program Files\\Cmder\\Cmder.exe", "/SINGLE", "$file_path"],
 }
 ```
 
@@ -121,6 +123,56 @@ Go to:
 - Move file to new group `Ctrl + K, Ctrl + Up`
 - Close group `Ctrl + K, Ctrl + Up`
 
+### Settings
+
+User:
+```json
+{
+    // Default is also good
+    "theme": "Monokai Pro.sublime-theme",
+    // Monokai or
+    "color_scheme": "Monokai Pro.sublime-color-scheme",
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    // Other good fonts are Ubuntu Mono, Source Code Pro or Consolas
+    "font_face": "Hack",
+    "font_size": 12,
+    // Avoid distracting blinking, but still make caret visible
+    "highlight_line": true,
+    "caret_style": "solid",
+    "wide_caret": true
+    // Indentation hints
+    "draw_white_space": "all",
+    "indent_guide_options":
+    [
+        "draw_active"
+    ],
+    // Reduce distractions
+    "fold_buttons": false,
+    "scroll_past_end": true,
+    // Optimized whitespace handling
+    "translate_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": true,
+    "ensure_newline_at_eof_on_save": true,
+}
+```
+
+Syntax-specific Markdown:
+```json
+{
+    "rulers": [79],
+    "spell_check": true,
+}
+```
+
+### Plugins
+
+- [Advanced CSV](https://packagecontrol.io/packages/Advanced%20CSV)
+- [Terminal](https://packagecontrol.io/packages/Terminal)
+- [MarkdownPreview]()
+
 
 ## Git
 
@@ -128,10 +180,21 @@ Comes with Cmder. Basic setup:
 ```
 git config --global user.name "Marco Weber"
 git config --global user.email marco.weber@hotmail.de
-git config --global core.editor subl
+git config --global core.editor "C:\Program Files\Sublime Text 3\subl.exe --wait --new-window"
 git config --global credential.helper wincred
 git config --global core.excludesfile %USERPROFILE%\.gitignore
 ```
+
+[Commit messages](https://chris.beams.io/posts/git-commit/):
+- Subject line:
+  - starts with capital letter
+  - uses imperative mode
+  - does not end in a period
+  - is max. 50 characters
+  - is separated by blank line from rest
+- Other lines:
+  - are max. 72 characters
+  - explain the *what* and *why*
 
 
 ## Python
