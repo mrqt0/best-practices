@@ -169,6 +169,23 @@ Syntax-specific Markdown:
 
 ### Plugins
 
+Install Package Control behind company proxy:
+- Copy code snippet from https://packagecontrol.io/installation
+- Replace empty Proxy Handler with `urllib.request.ProxyHandler({"http":"http://username:password@url:port"}))`
+- "View" -> "Show Console"
+- Paste and execute
+
+Configure Package Control:
+```json
+{
+	  "http_proxy": "url:port",
+	  "https_proxy": "url:port,
+	  "proxy_password": "password,
+	  "proxy_username": "username"
+}
+```
+
+Recommended Packages:
 - [Advanced CSV](https://packagecontrol.io/packages/Advanced%20CSV)
 - [Terminal](https://packagecontrol.io/packages/Terminal)
 - [MarkdownPreview]()
