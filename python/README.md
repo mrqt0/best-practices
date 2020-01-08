@@ -121,6 +121,36 @@ It also influences IDEs and documentation tools like sphinx.
   - `dropwhile` to skip first elements based on condition
 - Use `str.translate(mapping)` to translate multiple characters
 
+#### general
+
+- [Nick Coghlan: Considering Python's target audience](
+  http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html):
+
+#### Asyncio
+
+- [Armin Ronacher](https://lucumr.pocoo.org/2020/1/1/async-pressure/):
+  about backpressure and flow control. He says it is probably a mistake that
+  you can't await on `writer.write()`.
+
+#### Packaging
+
+- [James Bennett: A Python Packaging Carol](
+  https://www.b-list.org/weblog/2020/jan/05/packaging/):
+  Python packaging is actually not that bad. You need to distinguish
+  distribution, installation and environment handling (which is not so bad).
+- [Glyph: Python Packaging Is Good Now](
+  https://glyph.twistedmatrix.com/2016/08/python-packaging.html):
+  Talks about history until time article (2016) and how much it has improved.
+- [Nick Coghlan: The Python Packaging Ecosystem](
+  http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html):
+
+
+
+#### Pytest
+
+- [Martin Heinz: Pytest Features, That You Need in Your (Testing) Life](
+  https://martinheinz.dev/blog/7)
+
 
 ### Libraries and Applications
 
@@ -142,3 +172,5 @@ It also influences IDEs and documentation tools like sphinx.
 - [Moshe Zadka](https://opensource.com/article/19/11/document-python-sphinx)
 - [Al Sweigart]()
 - [Steve Dower]: Works at Microsoft, brought Python to the Windows Store
+- [Armin Ronacher](https://lucumr.pocoo.org/about/): Creator of Flask etc.
+- [Glyph](): Author of Twisted
