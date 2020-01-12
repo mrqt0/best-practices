@@ -5,8 +5,16 @@
 - relpython timer: checkout contextlib.ContextDecorator
   or different ways of tic/toc + contextmanager + decorator
 
+- [ ] put terminal cfg here
+- Reorganize documents:
+  -
+  - resources
+    - articles
+    - projects
+    - people
+  - tricks / patterns / ...
+  - guidelines
 
-- [ ] Set up linting, autocompletion in sublime text
 
 - [ ] pathtools
 - [ ] cli
@@ -31,7 +39,8 @@
   - command-line: argparse
   - concurrency: asyncio
   - web:
-- [Snippets](snippets.md)
+- [Recipes](recipes.md): Tricks, snippets and recipes for things that are hard
+  to memorize.
   - logging
   - bytes/int/string/hex conversions
   - regex
@@ -101,76 +110,3 @@ Fine tune settings:
     "lint_mode": "load_save"
 }
 ```
-
-
-## General Python Programming
-
-With `__all__`, you can limit what is importable with `from module import *`.
-It also influences IDEs and documentation tools like sphinx.
-
-
-### Tricks and Patterns
-
-- Use context managers for setup and teardown, either class-based or
-  function-based.
-  Also works for asynchronous enter and exit functions.
-  Inherit from `contextlib.ContextDecorator` so the class can also be used as
-  a decorator.
-- Use `itertools`:
-  - `islice` to take only part of iterator
-  - `dropwhile` to skip first elements based on condition
-- Use `str.translate(mapping)` to translate multiple characters
-
-#### general
-
-- [Nick Coghlan: Considering Python's target audience](
-  http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html):
-
-#### Asyncio
-
-- [Armin Ronacher](https://lucumr.pocoo.org/2020/1/1/async-pressure/):
-  about backpressure and flow control. He says it is probably a mistake that
-  you can't await on `writer.write()`.
-
-#### Packaging
-
-- [James Bennett: A Python Packaging Carol](
-  https://www.b-list.org/weblog/2020/jan/05/packaging/):
-  Python packaging is actually not that bad. You need to distinguish
-  distribution, installation and environment handling (which is not so bad).
-- [Glyph: Python Packaging Is Good Now](
-  https://glyph.twistedmatrix.com/2016/08/python-packaging.html):
-  Talks about history until time article (2016) and how much it has improved.
-- [Nick Coghlan: The Python Packaging Ecosystem](
-  http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html):
-
-
-
-#### Pytest
-
-- [Martin Heinz: Pytest Features, That You Need in Your (Testing) Life](
-  https://martinheinz.dev/blog/7)
-
-
-### Libraries and Applications
-
-- [PyOxidizer](https://pyoxidizer.readthedocs.io/en/latest/index.html):
-  Create stand-alone applications
-- [pipx]() Install python packages into isolated and globally accessible
-  environment
-
-
-### Further Reading
-
-- [Code Style](https://docs.python-guide.org/writing/style/)
-- [Tricks](https://martinheinz.dev/blog/1)
-- [Design Patterns](https://stackabuse.com/design-patterns-in-python/)
-
-
-## Resources
-
-- [Moshe Zadka](https://opensource.com/article/19/11/document-python-sphinx)
-- [Al Sweigart]()
-- [Steve Dower]: Works at Microsoft, brought Python to the Windows Store
-- [Armin Ronacher](https://lucumr.pocoo.org/about/): Creator of Flask etc.
-- [Glyph](): Author of Twisted

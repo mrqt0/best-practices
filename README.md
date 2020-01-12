@@ -47,6 +47,37 @@ Nice way to get UNIX shell and git for windows: http://cmder.net
 
 - Open tab in splitscreen mode, 50 percent to the bottom: `-new_console:s50h`
 
+### Windows Terminal integration
+
+Add a profile:
+```
+{
+    "guid": "{267ee24c-e8f1-4f69-86c9-dbd7943e20ca}",
+    "commandline" : "cmd.exe /k C:/Users/marco/tools/cmder/vendor/init.bat",
+    "name" : "cmder",
+    "icon" : "C:/Users/marco/tools/cmder/icons/cmder.ico",
+    "startingDirectory" : "%USERPROFILE%",
+    "fontFace": "Cascadia Code",
+    "fontSize": 14,
+    "useAcrylic": false,
+    "acrylicOpacity": 0.9,
+    "backgroundImage": "https://bing.nanxiongnandi.com/201405/ObservatoryFabra_1366x768.jpg",
+    "backgroundImageOpacity": 0.2,
+    "colorScheme": "Monokai Night"
+}
+```
+
+You might also want to make it the default profile:
+```
+    "defaultProfile": "{267ee24c-e8f1-4f69-86c9-dbd7943e20ca}",
+    "requestedTheme": "dark",
+```
+
+Color schemes:
+- [Monokai Night](
+  https://github.com/NickSeagull/windows-terminal-monokai-night/blob/master/scheme.json)
+- [Dracula](https://draculatheme.com/windows-terminal/)
+
 
 ## Sublime Text
 

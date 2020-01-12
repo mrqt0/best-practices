@@ -306,8 +306,6 @@ class C:
         """
         for i in range(100):
             yield i
-
-
 ```
 
 #### Function
@@ -373,12 +371,6 @@ max-line-length = 90
 ```
 
 
-## Testing philosophy
-
-Individual test steps with expected outcome is outdated:
-As well as the classic "test pyramid":
-https://tryexceptpass.org/article/pytest-github-integration/
-
 
 ## Typing
 
@@ -387,48 +379,3 @@ Alternatives:
 - pyright: Microsoft
 - pyre: Facebook
 - pytype: Google
-
-Resources:
-- [Al Sweigart: Type Hints for the Busy Python Programmer](https://inventwithpython.com/blog/2019/11/24/type-hints-for-busy-python-programmers/)
-- [MyPy cheat sheet](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)
-
-## Linting
-
-List of rules for flake8: https://lintlyci.github.io/Flake8Rules/
-
-
-## Distribution
-
-- src or not?
-  - [Testing your python package as installed by Per Ganssle](https://blog.ganssle.io/articles/2019/08/test-as-installed.html)
-  - See [python bytes 22](https://pythonbytes.fm/episodes/show/22/pythonpath-considered-harmful)
-  - https://hynek.me/articles/testing-packaging/
-  - See [python bytes 15](https://pythonbytes.fm/episodes/show/15/digging-into-python-packaging)
-- https://python-packaging.readthedocs.io/en/latest/
-- [Simple introduction](https://medium.com/small-things-about-python/lets-talk-about-python-packaging-6d84b81f1bb5#.b9ww4h4xt)
-- [Current by attrs' maintainer](https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/)
-- [Extensive overview](http://andrewsforge.com/article/python-new-package-landscape/)
-- [PyCon video on packaging](https://www.youtube.com/watch?time_continue=1&v=AQsZsgJ30AE&feature=emb_logo)
-- [Brian Skinn: setuptools and pyproject.toml](https://bskinn.github.io/My-How-Why-Pyproject-Src/)
-- [Test & Code with Brett Cannon](https://testandcode.com/52)
-
-## Test automation
-
-- [tox on python bytes 44](https://pythonbytes.fm/episodes/show/44/pip-install-malicious-code)
-- [tox changedir instead of src](https://pythonbytes.fm/episodes/show/138/will-pyoxidizer-weld-shut-one-of-python-s-major-gaps)
-
-## Laguage core
-
-- Python patterns https://python-patterns.guide/
-
-## Standard library
-
-Asyncio
-- [Yeray Diaz on Hackernoon](https://hackernoon.com/asyncio-for-the-working-python-developer-5c468e6e2e8e#.ft56qol06)
-- [Chris Medina on tryexceptpass](https://hackernoon.com/threaded-asynchronous-magic-and-how-to-wield-it-bba9ed602c32#.8qk30tq31)
-- [Chris Medina: new asyncio features in 3.7](https://tryexceptpass.org/article/asyncio-in-37/)
-
-## Third party
-
-CLI
-- [fire: convert functions and object to cli](https://github.com/google/python-fire)
