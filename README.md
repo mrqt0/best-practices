@@ -78,6 +78,15 @@ Color schemes:
   https://github.com/NickSeagull/windows-terminal-monokai-night/blob/master/scheme.json)
 - [Dracula](https://draculatheme.com/windows-terminal/)
 
+Windows Terminal Shortcuts:
+- Full screen: `Alt+Enter` or `F11`
+- Search: `Ctrl+Shift+F`
+- Split Panes horizontally: `Alt+Shift+-`
+- Split Panes horizontally: `Alt+Shift++`
+- Switch Focus: `Alt+Left` or other arrows
+- New Tab: `Ctrl+Shift+T`
+- Close Tab: `Ctrl+Shift+W`
+
 
 ## Sublime Text
 
