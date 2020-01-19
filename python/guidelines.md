@@ -105,20 +105,6 @@ instead of a dash:
 rsb_helloworld
 ```
 
-Discussion:
-
-- Should all names use a common prefix like `rsb_` or `rs`?
-  - Pros:
-    - A unique namespace avoids clashes with other projects.
-    - The user can already see when importing where the package comes from.
-  - Cons:
-    - The name looks a bit bulky
-      (but you can still `import rsb_helloworld as helloworld`)
-- If there is a prefix, what should it be? Prefixes that terminate in vowels
-  are easier to pronounce and merge into a single word, like `aiohttp`
-  or `pytest`.
-  But with our company name, it is difficult to come up with something similar,
-  so we should use a separator?
 
 
 ### Version
@@ -149,27 +135,62 @@ The version tag is usually prefixed with a `v`.
 
 You MUST specify the package version in your project file, e.g. `setup.py`.
 
-Discussion:
+### Structure
 
-- What exactly is the public API of a python package?
-  - Is it defined by the docstrings in the `__init__.py`, each module and class?
-  - Is it defined by the import hierarchy?
-  - Is it defined by all names in the `__all__` list?
-  - Is it defined by all packages, modules, functions, classes, methods and
-    attributes without leading underscores?
-- What if the package has one or several command-line interfaces?
-  Do they need separate versioning?
-- Where should the version number be defined? Should it also be part of the
-  source code, and if so, how to single-source it?
-  - The [Python Packaging Authority](https://packaging.python.org/guides/single-sourcing-package-version/)
-    list several possibilities for setuptools.
-  - Flit uses `__version__` inside `__init__.py` as the single source.
-  - In Python 3.8, there is `importlib.metadata.version()`, so no need to put
-    the version number in the source code?
-   -
+You MUST put your project under version control on Gitlab. You SHOULD stick
+to the following basic structure for your repository:
 
-  From vcs? necessary to add to code base, now that we have
-- Which extension to basic scheme allowed? (E.g. alpha and beta, release candidates, ...)
+
+Minimal:
+```
+my-project/
+├── src/
+│   └── my_project.py
+├── tests/
+│   └── test_my_project.py
+├── README.md
+└── setup.py
+```
+
+Optional:
+```
+my-project/
+├── data/
+│   ├──
+│   └──
+├── docs/
+│   ├── conf.py
+│   └── index.rst
+├── src/
+│   └── my_project.py
+│       ├── __init__.py
+│       ├── __main__.py
+│       ├── module1.py
+│       └── module2.py
+├── tests/
+│   ├── integration/
+│   │   └── test_my_project.py
+│   └── unit/
+│       ├── test_module1.py
+│       └── test_module2.py
+├── .gitignore
+├── .gitlab-ci.yml
+├── pyproject.toml
+├── README.md
+├── setup.py
+├── setup.cfg
+├── tox.ini
+└── setup.py
+```
+- The source code lives inside its own directory.
+- The tests . Tox.ini configuration and automation.
+- Documentation: README.md and docs/
+- Project files. For packaging and other tools configs.
+- CONTRIBUTING, LICENSE and CHANGELOG can be inside README.
+
+changelog
+yaml
+
 
 
 ## Code
@@ -181,13 +202,11 @@ the official python style guide. Whereas PEP8 leaves room for interpretation,
 you SHOULD use a checker like `pycodestyle` (which is part of `flake8`). You
 MAY use the autoformatter `black` to avoid any discussion about code style.
 
-Discussion:
-- The maximum line length is configurable even in black, which has a default of
-  88 characters. Pycodestyle follows PEP8 and has a default of 79 characters.
-  What should we choose?
-- pylint is also quite popular,
-
 ### Built-ins and Standard library
+
+Mdoern python code
+
+
 
 - Core
   - f-strings
@@ -245,77 +264,6 @@ for reference. You SHOULD follow these conventions:
   consist of a section heading and an indented list of values.
 - Finish with triple double quotes on a separate line, followed by a blank line
   before the code starts.
-
-#### Package
-
-- The **package** docstring inside the `__init__.py` SHOULD contain a list of
-modules and subpackages the package exports.
-
-Starting point of documentation: purpose, what it does, how it works.
-Modules and subpackages, how they relate to each other.
-
-https://stackoverflow.com/questions/1944569/how-do-i-write-good-correct-package-init-py-files
-
-
-
-#### Module
-
-- The **module** docstring SHOULD contain a list of classes, exceptions,
-  functions, global variables and other
-with a brief summary (typically shorter than the docstring of the objects
-themselves):
-The
-
-
-```py
-"""
-
-Classes:
-
-Functions:
--
-"""
-```
-
-#### Class
-
-**Class** docstring SHOULD include public methods and attributes
-Attributes
-Methods
-
-```py
-"""
-
-Classes:
-    C:
-
-Functions:
--
-"""
-
-
-class C:
-
-    def __init__(self):
-        pass
-
-    def get_squares(self) -> int:
-        """Calculate series of squared integer.
-
-        Yields:
-        """
-        for i in range(100):
-            yield i
-```
-
-#### Function
-**Function** and **method** docstrings
-Args
-Returns
-Yields
-Raises
-
-No need for Type hints (see next item).
 
 
 ### Type hints
