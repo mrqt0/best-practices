@@ -26,3 +26,4 @@ It also influences IDEs and documentation tools like sphinx.
 
 - Use `str.translate(mapping)` to translate multiple characters
 - Print four-byte unicode characters: `"\U0001F4A9"` with uppercase `U` or `chr(0x1F4A9)`
+- See [https://docs.python.org/3/howto/unicode.html] for more info
