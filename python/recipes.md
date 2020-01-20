@@ -21,4 +21,8 @@ It also influences IDEs and documentation tools like sphinx.
 - Use `itertools`:
   - `islice` to take only part of iterator
   - `dropwhile` to skip first elements based on condition
+
+#### Strings
+
 - Use `str.translate(mapping)` to translate multiple characters
+- Print four-byte unicode characters: `"\U0001F4A9"` with uppercase `U` or `chr(0x1F4A9)`
