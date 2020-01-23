@@ -27,3 +27,16 @@ It also influences IDEs and documentation tools like sphinx.
 - Use `str.translate(mapping)` to translate multiple characters
 - Print four-byte unicode characters: `"\U0001F4A9"` with uppercase `U` or `chr(0x1F4A9)`
 - See [https://docs.python.org/3/howto/unicode.html] for more info
+
+### File operations
+
+Unpack all archives:
+```py
+def unpack(root, delete_archive=False):
+    for path in Path(root).glob("**/*.zip"):
+        logging.info(f"Unpacking '{str(path)}'")
+        with zipfile.ZipFile(path) as archive:
+            archive.extractall(path.with_suffix(""))
+        if delete_archive:
+            path.unlink()
+```
