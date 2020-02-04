@@ -252,6 +252,42 @@ git config --global core.excludesfile %USERPROFILE%\.gitignore
 - Other lines:
   - are max. 72 characters
   - explain the *what* and *why*
+  
+Diff between different files on different branches:
+```
+git diff branch1:path1 branch2:path2`
+```
+Note: Only seems to work with paths relative to repository (not current
+directory).
+
+Add only sections of file:
+```
+git add -p
+```
+
+Interactive rebase:
+```
+git rebase -i
+```
+
+Reset tags:
+```
+git push origin :refs/tags/v1.0
+git tag -fa v1.0
+git push origin master --tags
+```
+You might need to use `git fetch -f --tags` on other PCs.
+
+Checkout only one file from other branch:
+```
+git checkout develop README.md
+git checkout develop conf/*.ini
+```
+
+Print author email:
+```
+git --no-pager show -s --format="%ae"
+```
 
 
 ## Python
