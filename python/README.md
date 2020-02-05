@@ -2,7 +2,7 @@
 
 ## To Do
 
-- relpython timer: checkout contextlib.ContextDecorator
+- realpython timer: checkout contextlib.ContextDecorator
   or different ways of tic/toc + contextmanager + decorator
 
 - [ ] put terminal cfg here

@@ -29,6 +29,10 @@ Links to articles I read. Of course it would be best to provide a short summary.
 
 ### Asyncio
 
+- [Lynn Root: Advanced Asyncio: Solving Real World Production Problems (video)](
+  https://www.youtube.com/watch?v=yKfenooKl6M)
+- [Stefan Scherfke: Advanced asyncio testing](
+  https://stefan.sofa-rockers.org/2016/03/10/advanced-asyncio-testing/):
 - [Armin Ronacher: I'm not feeling the async pressure](
   https://lucumr.pocoo.org/2020/1/1/async-pressure/):
   about backpressure and flow control. He says it is probably a mistake that
@@ -66,6 +70,14 @@ Quick start:
   https://medium.com/small-things-about-python/lets-talk-about-python-packaging-6d84b81f1bb5#.b9ww4h4xt)
 - [Hynek Schlawack: Sharing Your Labor of Love: PyPI Quick and Dirty](
   https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/)
+
+Toolchains:
+- [Stefan Scherfke: Python packaging with gitlab and conda](https://stefan.sofa-rockers.org/2019/04/18/python-packaging-gitlab-conda/)
+  - Use gitlab runner instead of tox to run locally
+  - Use docker inside docker to use images from other gitlab projects
+  - prefix packages with `own`
+  - Use master and develop branch to deploy into stable and staging channel
+  - Version number is `$GIT_DESCRIBE_TAG.$GIT_DESCRIBE_NUMBER`
 
 Historical overviews:
 - [James Bennett: A Python Packaging Carol](
@@ -122,5 +134,7 @@ About PEP 417 and 418:
   Create stand-alone applications
 - [pipx]() Install python packages into isolated and globally accessible
   environment
+- [aiomas](https://aiomas.readthedocs.io/en/latest/index.html): RPC and multi-
+  agent library similar to remex, written in asyncio (Stefan Scherfke)
 
 
