@@ -60,6 +60,8 @@ Pytest:
 - [Martin Heinz: Pytest Features, That You Need in Your (Testing) Life](
   https://martinheinz.dev/blog/7)
 Tox:
+- [Ionel Cristian Mărieș: Tox tricks and patterns](
+  https://blog.ionelmc.ro/2015/04/14/tox-tricks-and-patterns/)
 - [tox on python bytes 44](https://pythonbytes.fm/episodes/show/44/pip-install-malicious-code)
 - [tox changedir instead of src](https://pythonbytes.fm/episodes/show/138/will-pyoxidizer-weld-shut-one-of-python-s-major-gaps)
 
@@ -121,6 +123,7 @@ About PEP 417 and 418:
 - [Bernat Gabor](https://www.bernat.tech/): Maintainer of tox and virtualenv,
   works at Bloomberg
 - [Hynek Schlawack](https://hynek.me/): Maintainer of attrs
+- [Ionel Cristian Mărieș](https://blog.ionelmc.ro/): Maintainer of pytest-cov
 
 
 
