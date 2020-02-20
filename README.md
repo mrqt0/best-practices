@@ -163,6 +163,12 @@ Go to:
 - Move file to new group `Ctrl + K, Ctrl + Up`
 - Close group `Ctrl + K, Ctrl + Up`
 
+### Tricks
+
+Force line wrap at 79 chars: regex search and replace
+- find: `(.{79})`
+- replace: `$1\n`
+
 ### Settings
 
 User:
