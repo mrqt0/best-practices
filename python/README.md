@@ -87,9 +87,9 @@ Fine tune settings:
     "anaconda_linting": false,
     "pep8": false,
 ```
-- Set the python interpreter (can point to venv):
+- Set the python interpreter (here: point to venv in project file):
 ```json
-    "python_interpreter": "path/to/python",
+    "python_interpreter": "$folder/.venv/Scripts/python.exe",
 ```
 
 
