@@ -295,6 +295,14 @@ Print author email:
 git --no-pager show -s --format="%ae"
 ```
 
+## Sublime Merge
+
+To be able to execute `smerge` from the command line,
+add the directory to `%PATH` or create an alias:
+```
+alias smerge="C:\Program Files\Sublime Merge\smerge.exe" $*
+```
+
 
 ## Python
 
