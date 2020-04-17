@@ -190,7 +190,7 @@ User:
     "caret_style": "solid",
     "wide_caret": true
     // Indentation hints
-    "draw_white_space": "all",
+    "draw_white_space": "selection",
     "indent_guide_options":
     [
         "draw_active"
@@ -202,14 +202,23 @@ User:
     "translate_tabs_to_spaces": true,
     "trim_trailing_white_space_on_save": true,
     "ensure_newline_at_eof_on_save": true,
+    "remember_full_screen": true
 }
 ```
 
-Syntax-specific Markdown:
+Syntax-specific Markdown (you can toggle spell check with `F6`):
 ```json
 {
     "rulers": [79],
     "spell_check": true,
+}
+```
+
+Distraction-free:
+```json
+{
+    "rulers": [],
+    "draw_indent_guides": false
 }
 ```
 
@@ -235,12 +244,92 @@ Recommended Packages:
 - [Advanced CSV](https://packagecontrol.io/packages/Advanced%20CSV)
 - [Terminal](https://packagecontrol.io/packages/Terminal)
 - [MarkdownPreview]()
+- [Terminus](https://packagecontrol.io/packages/Terminus)
+- [Monokai Pro]()
+
+The "View Package File" command help you find the package files.
+The "PackageResourceViewer" lets you look into the files.
+
+With Monokai Pro: set minimal mode in user setings:
+```json
+    "monokai_pro_minimal": true,
+```
+
+
+### Terminal integration
+
+With `Terminus`, you can use different shells from within Sublime Text.
+Add the terminals to your user config by copying them from the default config:
+```json
+"default_config": "Cmder",
+"shell_configs": [
+    {
+        "name": "Cmder",
+        "cmd": ["cmd.exe", "/k", "%CMDER_ROOT%\\vendor\\init.bat"],
+        "env": {},
+        "enable": true,
+        "platforms": ["windows"]
+    },
+]
+```
+
+Now you can launch the shells in the panel (bottom) or a view (tab) with
+"Terminus: List Shells".
+
+Add a keyboard shortcut to toggle the panel. Note that the terminal will not be
+closed, but only disappear. To close, use `ctrl+shift+w` by default. If the
+terminal is not open yet, a new default shell will be opened.
+```json
+{
+    "keys": ["ctrl+`"], "command": "toggle_terminus_panel", "args": {
+        "cwd": "${file_path:${folder}}"
+    }
+}
+```
+
+Add another command to open a new tab (view):
+```json
+{
+    "keys": ["alt+`"], "command": "terminus_open", "args": {
+        "cwd": "${file_path:${folder}}"
+    }
+}
+```
+
+You can make a build system be run by terminus by adding the following lines.
+The two targets `terminus_exec` and `terminus_open` support the same arguments
+(nearly all of the default Sublime Text target), but differ in their defaults;
+most notably, whether they are executed in a panel or a view.
+Note that the build keeps running when you close the panel (unlike builds in
+views, which are stopped).
+```json
+    "target": "terminus_exec",
+    "cancel": "terminus_cancel_build",
+    "focus": true,
+```
+
+Some theme like Monokai Pro set the background of the panel. This will conflict
+with the background color of the Terminus theme due to some Sublime Text issue.
+You may either:
+1. Create a Terminus color scheme that matches the background color of the
+   Sublime Text theme
+2. Adapt the theme. For Monokai pro, you copy the `.sublime-theme` file into
+   you user config directory and overwrite the color of `text_output_control`.
+
+### Git integration
+
+Add keyboard shortcut to launch Sublime Merge:
+```json
+    {
+        "keys": ["alt+z"], "command": "sublime_merge_open_repo"
+    }
+```
 
 
 ## Git
 
 Comes with Cmder. Basic setup:
-```
+```sh
 git config --global user.name "Marco Weber"
 git config --global user.email marco.weber@hotmail.de
 git config --global core.editor "C:\Program Files\Sublime Text 3\subl.exe --wait --new-window"
@@ -258,7 +347,7 @@ git config --global core.excludesfile %USERPROFILE%\.gitignore
 - Other lines:
   - are max. 72 characters
   - explain the *what* and *why*
-  
+
 Diff between different files on different branches:
 ```
 git diff branch1:path1 branch2:path2`

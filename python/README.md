@@ -60,6 +60,9 @@ later.
 
 ## Setting up Sublime Text 3
 
+Resources:
+- https://blog.usejournal.com/ultimate-sublime-for-python-5c531224421b
+
 Useful syntax-specific settings:
 ```json
     // maximum line length for dosctrings and code
@@ -77,8 +80,10 @@ Install via package control:
 Features:
 - Autocompletion
 - Go to definition: `Ctrl+Alt+G`
-- Find usages. `Ctrl+Alt+F`
+- Find usages: `Ctrl+Alt+F`
 - Show documentation: `Ctrl+Alt+D`
+- Autoformat: `Ctrl+Alt+R`
+- Fill function arguments: `Tab`
 
 Fine tune settings:
 - Go to `Preferences` -> `Package Settings` -> `Anaconda` (default or user)
@@ -86,6 +91,10 @@ Fine tune settings:
 ```json
     "anaconda_linting": false,
     "pep8": false,
+    "suppress_word_completions": true,
+    "suppress_explicit_completions": true,
+}
+
 ```
 - Set the python interpreter (here: point to venv in project file):
 ```json
