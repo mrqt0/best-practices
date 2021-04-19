@@ -110,7 +110,7 @@ User:
     // Avoid distracting blinking, but still make caret visible
     "highlight_line": true,
     "caret_style": "solid",
-    "wide_caret": true
+    "wide_caret": true,
     // Indentation hints
     "draw_white_space": "selection",
     "indent_guide_options":
@@ -119,7 +119,6 @@ User:
     ],
     // Reduce distractions
     "fold_buttons": false,
-    "scroll_past_end": true,
     // Optimized whitespace handling
     "translate_tabs_to_spaces": true,
     "trim_trailing_white_space_on_save": true,

@@ -17,6 +17,11 @@
 
 
 - [ ] pathtools
+- [ ] functools
+  - check out dispatch pattern
+- [ ] itertools
+- [ ] Regex: group access, backreference, lazy quantifiers, lookahead, look behind
+- [ ] Datetime
 - [ ] cli
 - [ ] Check out article on async init patterns: http://as.ynchrono.us/2014/12/asynchronous-object-initialization.html
   - dependency injection: `__init__` consumes objects; there is additional async
@@ -25,7 +30,6 @@
   - separate module-level method for creation
   - context manager
   - check out async-dgram: https://pypi.org/project/asyncio-dgram/
-- [ ] Check out functools dispatch pattern
 
 ## Table of Contents
 
